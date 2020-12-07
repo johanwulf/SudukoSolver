@@ -98,7 +98,7 @@ public class SudokuUI {
         }
 
         if(error) {
-            JOptionPane.showMessageDialog(frame, "Only numbers between 1-9 can be entered");
+            JOptionPane.showMessageDialog(frame, "Only numbers between 1-9 can be entered. Invalid entries have been cleared.");
         } else {
             if(!solver.solve()) {
                 JOptionPane.showMessageDialog(frame, "The entered Sudoku is unsolvable");

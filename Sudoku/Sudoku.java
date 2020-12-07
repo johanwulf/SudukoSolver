@@ -58,26 +58,13 @@ public class Sudoku implements SudokuSolver {
         // This function is not working
         for(int i = row; i < row + 3; i++) {
             for(int j = col; j < col + 3; j++) {
-                if(SudokuBoard[i][j] == number) {
+                if((SudokuBoard[i][j] == number) && ((i != x) && (j != y))) {
                     return false;
                 }
             }
         }
 
         return true;
-    }
-
-    @Override
-    public void clear() {
-        for (int i = 0; i < 9; i++) {
-            for (int k = 0; k < 9; k++) {
-                setCell(i, k, 0);
-            }
-        }
-    }
-
-    public void randomize() {
-        throw new UnsupportedOperationException();
     }
     
     @Override
