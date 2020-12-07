@@ -3,21 +3,59 @@ package Sudoku;
 public class Sudoku implements SudokuSolver {
 
     private int[][] SudokuBoard;
-
+    
     public Sudoku() {
         this.SudokuBoard = new int[9][9];
     }
 
     @Override
     public boolean solve() {
-        // TODO Auto-generated method stub
-        return false;
+        for (int row = 0; row < 9; row++){
+            for (int col = 0; col < 9; col++){
+                if(SudokuBoard[row][col] == 0) {
+                    for(int number = 1; number < 10; number++) {
+                        if(checkRules(row, col, number)) {
+                            SudokuBoard[row][col] = number;
+
+                            if(solve()) {
+                                return true;
+                            } else {
+                                SudokuBoard[row][col] = 0;
+                            }
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean checkRules(int x, int y, int number) {
+        for(int i = 0; i < 9; i++) {
+            if((y != i && SudokuBoard[x][i] == number) || (x != i && SudokuBoard[i][y] == number)) {
+                return false;
+            }
+        }
+
+        int row = x - x % 3;
+        int col = y - y % 3;
+
+        for(int i = row; i < row + 3; i++) {
+            for(int j = col; j < col + 3; j++) {
+                if(SudokuBoard[i][j] == number) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     @Override
     public void clear() {
-        for (int i = 1; i <= 9; i++) {
-            for (int k = 1; k <= 9; k++) {
+        for (int i = 0; i < 9; i++) {
+            for (int k = 0; k < 9; k++) {
                 setCell(i, k, 0);
             }
         }
@@ -29,12 +67,12 @@ public class Sudoku implements SudokuSolver {
     
     @Override
     public void setCell(int row, int col, int val) throws IllegalArgumentException {
-
+        SudokuBoard[row][col] = val;
     }
 
     @Override
     public int getCell(int row, int col) throws IllegalArgumentException {
-        return 0;
+        return SudokuBoard[row][col];
     }
     
 }

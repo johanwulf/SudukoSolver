@@ -5,4 +5,4 @@ public class SudokuMain {
         Sudoku game = new Sudoku();
         SudokuUI UI = new SudokuUI(game);
     }
-}
+} 
