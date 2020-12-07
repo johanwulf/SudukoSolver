@@ -1,5 +1,6 @@
-public interface SudokuSolver {
+package Sudoku;
 
+public interface SudokuSolver {
     /**
      * Tries to solve the current sudoku.
      * @return true if there is one or more solutions, false if no solution could be found.
