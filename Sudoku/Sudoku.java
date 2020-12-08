@@ -55,7 +55,6 @@ public class Sudoku implements SudokuSolver {
         int row = x - x % 3;
         int col = y - y % 3;
 
-        // This function is not working
         for(int i = row; i < row + 3; i++) {
             for(int j = col; j < col + 3; j++) {
                 if((SudokuBoard[i][j] == number) && ((i != x) && (j != y))) {
