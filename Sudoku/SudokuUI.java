@@ -4,15 +4,15 @@ import javax.swing.*;
 
 public class SudokuUI {
     JTextField[][] sudokuFields;
-    Sudoku solver;
+    SudokuSolver solver;
 
     public SudokuUI(Sudoku solver) {
         this.solver = solver;
         sudokuFields = new JTextField[9][9];
-        SwingUtilities.invokeLater(() -> createWindow(solver, "Sudoku", 400, 410));
+        SwingUtilities.invokeLater(() -> createWindow("Sudoku", 400, 410));
     }
 
-    public void createWindow(Sudoku solver, String title, int width, int height){
+    public void createWindow(String title, int width, int height){
         JFrame frame = new JFrame(title);
         Container pane = frame.getContentPane();
         JPanel fieldsPanel = new JPanel();
@@ -23,7 +23,6 @@ public class SudokuUI {
 
         fieldsPanel.setLayout(new GridLayout(9, 9));
         Font font = new Font("SansSerif", Font.BOLD, 20);
-
 
         for(int x = 0; x < 9; x++) {
             for(int y = 0; y < 9; y++) {
@@ -65,10 +64,7 @@ public class SudokuUI {
 		frame.setVisible(true);
     }
 
-    public void createBoard(Frame JFrame, Sudoku Sudoku){
-        
 
-    }
 
     private void solveBoard(Frame frame) {
         boolean error = false;

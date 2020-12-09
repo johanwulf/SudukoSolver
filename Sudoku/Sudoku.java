@@ -4,10 +4,25 @@ public class Sudoku implements SudokuSolver {
 
     private int[][] SudokuBoard;
 
+    /**
+     * Creates an empty Sudoku
+     */
     public Sudoku() {
         this.SudokuBoard = new int[9][9];
     }
 
+    /**
+     * Creates a Sudoku with the values of sudokuBoard
+     * @param sudokuBoard values of the sudokuBoard
+     */
+    public Sudoku(int[][] sudokuBoard) {
+        this.SudokuBoard = sudokuBoard;
+    }
+    
+    /**
+     * Tries to solve the current sudoku.
+     * @return true if there is one or more solutions, false if no solution could be found.
+     */
     @Override
     public boolean solve() {
         for (int row = 0; row < 9; row++){
@@ -23,6 +38,10 @@ public class Sudoku implements SudokuSolver {
         return recursiveSolve();
     }
 
+    /**
+     * Tries to solve the current sudoku.
+     * @return true if there is one or more solutions, false if no solution could be found.
+     */
     private boolean recursiveSolve() {
         for (int row = 0; row < 9; row++){
             for (int col = 0; col < 9; col++){
@@ -45,6 +64,13 @@ public class Sudoku implements SudokuSolver {
         return true;
     }
 
+    /**
+     * Check if inserting number on position x, y would be allowed according to the rules
+     * @param x the x value of the position to check
+     * @param y the y value of the position to check
+     * @param number the number we are trying to insert
+     * @return true if the number can be placed at x, y, otherwise returns false
+     */
     private boolean checkRules(int x, int y, int number) {
         for(int i = 0; i < 9; i++) {
             if((y != i && SudokuBoard[x][i] == number) || (x != i && SudokuBoard[i][y] == number)) {
@@ -66,13 +92,33 @@ public class Sudoku implements SudokuSolver {
         return true;
     }
     
+    /**
+     * @param row must be between 1-9 since the sudokuboard is 9x9
+     * @param col must be between 1-9 since the sudokuboard is 9x9
+     * @param val must be between 1-9 (following the rules of sudoku) or 0 if cell should be marked as unsolved.
+     * @throws IllegalArgumentException if any of the parameters are out of range
+     *         or the if val can't be placed at the current cell.
+     */
     @Override
     public void setCell(int row, int col, int val) throws IllegalArgumentException {
+        if(row < 0 || row > 8 || col < 0 || col > 8 || val < 0 || val > 9) {
+            throw new IllegalArgumentException();
+        }
+
         SudokuBoard[row][col] = val;
     }
-
+    
+    /**
+     * @param row must be between 1-9 since the sudokuboard is 9x9
+     * @param col must be between 1-9 since the sudokuboard is 9x9
+     * @throws IllegalArgumentException if any of the parameters are out of range
+     */
     @Override
     public int getCell(int row, int col) throws IllegalArgumentException {
+        if(row < 0 || row > 8 || col < 0 || col > 8) {
+            throw new IllegalArgumentException();
+        }
+
         return SudokuBoard[row][col];
     }
     
