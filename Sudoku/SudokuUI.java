@@ -64,8 +64,6 @@ public class SudokuUI {
 		frame.setVisible(true);
     }
 
-
-
     private void solveBoard(Frame frame) {
         boolean error = false;
         
