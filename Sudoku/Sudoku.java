@@ -93,9 +93,9 @@ public class Sudoku implements SudokuSolver {
     }
     
     /**
-     * @param row must be between 1-9 since the sudokuboard is 9x9
-     * @param col must be between 1-9 since the sudokuboard is 9x9
-     * @param val must be between 1-9 (following the rules of sudoku) or 0 if cell should be marked as unsolved.
+     * @param row must be between 0-8 since the sudokuboard is 9x9
+     * @param col must be between 0-8 since the sudokuboard is 9x9
+     * @param val must be between 0-8 (following the rules of sudoku) or 0 if cell should be marked as unsolved.
      * @throws IllegalArgumentException if any of the parameters are out of range
      *         or the if val can't be placed at the current cell.
      */
@@ -109,8 +109,8 @@ public class Sudoku implements SudokuSolver {
     }
     
     /**
-     * @param row must be between 1-9 since the sudokuboard is 9x9
-     * @param col must be between 1-9 since the sudokuboard is 9x9
+     * @param row must be between 0-8 since the sudokuboard is 9x9
+     * @param col must be between 0-8 since the sudokuboard is 9x9
      * @throws IllegalArgumentException if any of the parameters are out of range
      */
     @Override
