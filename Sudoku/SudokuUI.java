@@ -6,21 +6,48 @@ public class SudokuUI {
     JTextField[][] sudokuFields;
     SudokuSolver solver;
 
-    public SudokuUI(Sudoku solver) {
+    public SudokuUI(Sudoku solver, String windowTitle) {
         this.solver = solver;
         sudokuFields = new JTextField[9][9];
-        SwingUtilities.invokeLater(() -> createWindow("Sudoku", 400, 410));
+        SwingUtilities.invokeLater(() -> createWindow(windowTitle, 400, 410));
     }
 
     public void createWindow(String title, int width, int height){
         JFrame frame = new JFrame(title);
         Container pane = frame.getContentPane();
-        JPanel fieldsPanel = new JPanel();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(width, height));
         frame.setResizable(false);
 
+        pane.add(createFields(), BorderLayout.CENTER);
+        pane.add(createButtons(frame), BorderLayout.SOUTH);
+
+        frame.pack();
+		frame.setVisible(true);
+    }
+
+    private JPanel createButtons(JFrame frame) {
+        JPanel buttonPanel = new JPanel();
+        JButton solveButton = new JButton("Solve");
+        JButton clearButton = new JButton("Clear");
+
+        buttonPanel.add(solveButton);
+        buttonPanel.add(clearButton);
+
+        clearButton.addActionListener(e -> {
+            clearBoard();
+        });
+
+        solveButton.addActionListener(e -> {
+            solveBoard(frame);
+        });
+
+        return buttonPanel;
+    }
+
+    private JPanel createFields() {
+        JPanel fieldsPanel = new JPanel();
         fieldsPanel.setLayout(new GridLayout(9, 9));
         Font font = new Font("SansSerif", Font.BOLD, 20);
 
@@ -41,27 +68,8 @@ public class SudokuUI {
                 
             }
         }
-        
-        JPanel buttonPanel = new JPanel();
-        JButton solveButton = new JButton("Solve");
-        JButton clearButton = new JButton("Clear");
 
-        buttonPanel.add(solveButton);
-        buttonPanel.add(clearButton);
-
-        clearButton.addActionListener(e -> {
-            clearBoard();
-        });
-
-        solveButton.addActionListener(e -> {
-            solveBoard(frame);
-        });
-
-        pane.add(fieldsPanel, BorderLayout.CENTER);
-        pane.add(buttonPanel, BorderLayout.SOUTH);
-
-        frame.pack();
-		frame.setVisible(true);
+        return fieldsPanel;
     }
 
     private void solveBoard(Frame frame) {
