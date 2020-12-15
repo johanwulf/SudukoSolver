@@ -34,7 +34,7 @@ public class SudokuTester {
 			{0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,3,0,0},
 			{0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,3} };
+                {0,0,0,0,0,0,0,0,3} };
             
         sudokuBoard = new Sudoku(sudokuArray);
         assertFalse(sudokuBoard.solve(), "Solve was not false");
@@ -48,7 +48,7 @@ public class SudokuTester {
 			{0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0} };
+                {0,0,0,0,0,0,0,0,0} };
             
         sudokuBoard = new Sudoku(sudokuArray);
         assertFalse(sudokuBoard.solve(), "Solve was not false");
@@ -66,7 +66,7 @@ public class SudokuTester {
 			{0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0},
 			{0,0,0,0,0,0,0,0,0},
-            {0,0,0,0,0,0,0,0,0} };
+                {0,0,0,0,0,0,0,0,0} };
             
         sudokuBoard = new Sudoku(sudokuArray);
         assertTrue(sudokuBoard.solve(), "Solve was not true");
@@ -83,7 +83,7 @@ public class SudokuTester {
 			{6,0,0,0,0,0,0,2,8},
 			{4,1,0,6,0,8,0,0,0},
 			{8,6,0,0,3,0,1,0,0},
-            {0,0,0,0,0,0,4,0,0} };
+                {0,0,0,0,0,0,4,0,0} };
 
         assertTrue(sudokuBoard.solve(), "Solve was not true");
     }
