@@ -34,34 +34,38 @@ public class Sudoku implements SudokuSolver {
                 }
             }
         }
-        
-        return recursiveSolve();
+        return recursiveSolve(0, 0);
     }
 
     /**
      * Tries to solve the current sudoku.
      * @return true if there is one or more solutions, false if no solution could be found.
      */
-    private boolean recursiveSolve() {
-        for (int row = 0; row < 9; row++){
-            for (int col = 0; col < 9; col++){
-                if(SudokuBoard[row][col] == 0) {
-                    for(int number = 1; number < 10; number++) {
-                        if(checkRules(row, col, number)) {
-                            SudokuBoard[row][col] = number;
+    private boolean recursiveSolve(int row, int col) {
+        if (col == 9) {
+            col = 0;
+            row++;
+        }
 
-                            if(recursiveSolve()) {
-                                return true;
-                            } else {
-                                SudokuBoard[row][col] = 0;
-                            }
-                        }
-                    }
-                    return false;
+        if (row == 9) {
+            return true;
+        }
+
+        if(SudokuBoard[row][col] != 0) {
+            return recursiveSolve(row, col+1);
+        }
+
+        for(int i = 1; i <= 9; i++) {
+            if(checkRules(row, col, i)) {
+                SudokuBoard[row][col] = i;
+
+                if(recursiveSolve(row, col+1)) {
+                    return true;
                 }
             }
+            SudokuBoard[row][col] = 0;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -88,7 +92,6 @@ public class Sudoku implements SudokuSolver {
                 }
             }
         }
-
         return true;
     }
     
@@ -104,7 +107,6 @@ public class Sudoku implements SudokuSolver {
         if(row < 0 || row > 8 || col < 0 || col > 8 || val < 0 || val > 9) {
             throw new IllegalArgumentException();
         }
-
         SudokuBoard[row][col] = val;
     }
     
@@ -118,7 +120,6 @@ public class Sudoku implements SudokuSolver {
         if(row < 0 || row > 8 || col < 0 || col > 8) {
             throw new IllegalArgumentException();
         }
-
         return SudokuBoard[row][col];
     }
     
