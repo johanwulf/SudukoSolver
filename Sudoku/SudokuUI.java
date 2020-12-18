@@ -19,12 +19,11 @@ public class SudokuUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(width, height));
         frame.setResizable(false);
+        frame.pack();
+		frame.setVisible(true);
 
         pane.add(createFields(), BorderLayout.CENTER);
         pane.add(createButtons(frame), BorderLayout.SOUTH);
-
-        frame.pack();
-		frame.setVisible(true);
     }
 
     private JPanel createButtons(JFrame frame) {
